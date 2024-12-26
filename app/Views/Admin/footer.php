@@ -1,6 +1,6 @@
-<footer class="main-footer" style="background: linear-gradient(to right, #fff, #afeae2);">
+<footer class="main-footer">
         <div class="footer-left">
-          <a href="#">DELIVERYAPP</a></a>
+          <a href="#">TAX MGT</a></a>
         </div>
         <div class="footer-right">
         </div>
