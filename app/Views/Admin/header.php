@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>public/assets/css/components.css">
     <link rel="stylesheet" href="<?= base_url() ?>public/assets/css/custom.css">
     <link rel='shortcut icon' type='image/x-icon' href="<?= base_url() ?>public/assets/img/favicon.ico' />
-    <link rel=" stylesheet" href="<?= base_url() ?>public/assets/bundles/datatables/datatables.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>public/assets/bundles/datatables/datatables.min.css">
     <link rel="stylesheet"
         href="<?= base_url() ?>public/assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css">
 
@@ -121,19 +121,20 @@ label.error {
 
                     <ul class="sidebar-menu">
 
-                        <li class="dropdown">
+                    <li class="dropdown">
                             <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="user"></i><span>Masters</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="<?= base_url() ?>adduser">Add User</a></li>
-                                 <li><a class="nav-link" href="<?= base_url() ?>addzones">Add Zone</a></li>
-                                 <li><a class="nav-link" href="<?= base_url() ?>userlist">User List</a></li>   
+                                 <li><a class="nav-link" href="<?= base_url() ?>addsociety">Add Society</a></li>
+                                 <li><a class="nav-link" href="<?= base_url() ?>addbuilding">Add Building</a></li>
+                                 <li><a class="nav-link" href="<?= base_url() ?>addflats">Add Flats</a></li>
+                                 <!-- <li><a class="nav-link" href="<?= base_url() ?>userlist">User List</a></li>    -->
                             </ul>
                         </li>
                         <li class="dropdown">
-                        <a href="#" class="menu-toggle nav-link has-dropdown" ><i data-feather="layout"></i><span>Product</span></a>
+                        <a href="#" class="menu-toggle nav-link has-dropdown" ><i data-feather="layout"></i><span>Invoice</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="<?= base_url() ?>addproduct">Add Product</a></li>
-                                <li><a class="nav-link" href="<?= base_url() ?>productlist">Product List</a></li>
+                                <li><a class="nav-link" href="<?= base_url() ?>genrateinvoice">Create Invoice</a></li>
+                                <li><a class="nav-link" href="<?= base_url() ?>productlist">Invoice List</a></li>
                             </ul>
                         </li>
                       ]

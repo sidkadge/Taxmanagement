@@ -25,6 +25,8 @@ $routes->get('add_to_cardfors/(:any)', 'Home::add_to_cardfors/$1');
 $routes->post('getSocietiesByZone','Home::getSocietiesByZone');
 $routes->post('getBuildingsBySociety','Home::getBuildingsBySociety');
 
+$routes->get('genrateinvoice', 'Home::genrateinvoice');
+$routes->get('invoice', 'Home::invoice');
 
 $routes->get('AdminDashboard', 'Home::AdminDashboard');
 $routes->get('addproduct', 'Home::addproduct');
@@ -77,3 +79,9 @@ $routes->post('Subscriptionsbook','Home::Subscriptionsbook');
 $routes->post('add_to_cardfors/Subscriptionsbook','Home::Subscriptionsbook');
 
 $routes->post('Home/paymentsucess','Home::paymentsucess');
+$routes->post('addsociety', 'Home::addsociety');
+$routes->get('addsociety', 'Home::addsociety');
+$routes->get('addbuilding', 'Home::addbuilding');
+$routes->post('addbuilding', 'Home::addbuilding');
+$routes->get('addflats', 'Home::addflats');
+$routes->post('create','Home::create');
