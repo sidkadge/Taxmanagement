@@ -152,6 +152,44 @@
 <?php include __DIR__.'/../Admin/footer.php'; ?>
 
 <script>
+   $(document).ready(function () {
+    // Handle Society or Building selection change
+    $('#Society, #Building').change(function () {
+        var societyId = $('#Society').val();
+        var buildingId = $('#Building').val();
+
+        // Only make the AJAX call if both values are selected
+        if (societyId && buildingId) {
+            $.ajax({
+                url: '<?php echo base_url("getBuildingChargesBySociety"); ?>',
+                type: 'POST',
+                data: { society_id: societyId, building_id: buildingId },  // Pass both values
+                dataType: 'json',
+                success: function (response) {
+                    if (response.length > 0) {
+                        var building = response[0]; // Assuming one building per society
+                        $('#Municipal_Tax').val(building.Municipal_Tax);
+                        $('#Electricity_Charges').val(building.Electricity_Charges);
+                        $('#Water_Charges').val(building.Water_Charges);
+                        $('#Education_Fund').val(building.Education_Fund);
+                        $('#Lease_Rent_Charges').val(building.Lease_Rent_Charges);
+                    } else {
+                        // Clear fields if no data found
+                        $('#Municipal_Tax, #Electricity_Charges, #Water_Charges, #Education_Fund, #Lease_Rent_Charges').val('');
+                        alert('No building data found for the selected society and building.');
+                    }
+                },
+                error: function () {
+                    alert('Error retrieving building data.');
+                }
+            });
+        } else {
+            // Clear fields if either society or building is not selected
+            $('#Municipal_Tax, #Electricity_Charges, #Water_Charges, #Education_Fund, #Lease_Rent_Charges').val('');
+        }
+    });
+});
+
   $(document).ready(function () {
     // Function to calculate the Total field
     function calculateTotal() {

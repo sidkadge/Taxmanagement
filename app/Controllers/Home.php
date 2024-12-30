@@ -175,11 +175,84 @@ public function genrateinvoice()
     $data['building'] = $model->getalldata('tbl_building', $wherecond);
     $wherecond = array('is_deleted' => 'N');
     $data['flats'] = $model->getalldata('tbl_flats', $wherecond);
+    //   echo '<pre>';  print_r($data);die;
     echo view('Admin/genrateinvoice',$data);
 }
+public function getBuildingChargesBySociety()
+{
+    $societyId = $this->request->getPost('society_id');
+    $buildingId = $this->request->getPost('building_id'); // Retrieve building_id
+    $model = new Register_model();
+
+    // Initialize the where condition based on the Society ID
+    $wherecond = ['is_deleted' => 'N', 'Society' => $societyId];
+
+    // Add the building condition only if the building ID is present
+    if ($buildingId) {
+        $wherecond['id'] = $buildingId; // Add building ID to the condition
+    }
+
+    // Fetch building data based on the where condition
+    $buildingData = $model->getalldata('tbl_building', $wherecond);
+    
+    // Return the result as JSON
+    return $this->response->setJSON($buildingData);
+}
+
 public function invoice()
 {
-    echo view('Admin/invoice');
+    $db = \Config\Database::connect();
+    $session = \Config\Services::session();
+
+    // Get the ID from the URL segment
+    $id = $this->request->getUri()->getSegment(2);
+
+    // Validate the ID
+    if (!is_numeric($id)) {
+        return "Invalid ID";
+    }
+
+    // Fetch unpaid invoices where ID matches
+    $sql = "SELECT * FROM tbl_invoice WHERE invoice_status = 'UnPaid' AND id = ?";
+    $query = $db->query($sql, [$id]);
+    $invoiceData = $query->getResultArray();
+
+    if (empty($invoiceData)) {
+        return "No records found for the given ID.";
+    }
+
+    // Enhance data with Society and Building names
+    foreach ($invoiceData as &$invoice) {
+        // Fetch Society name
+        $societyQuery = $db->table('tbl_society')
+            ->select('Society')
+            ->where('id', $invoice['Society'])
+            ->get();
+        $society = $societyQuery->getRowArray();
+        $invoice['Society_Name'] = $society['Society'] ?? 'Unknown';
+
+        // Fetch Building name
+        $buildingQuery = $db->table('tbl_building')
+            ->select('Building')
+            ->where('id', $invoice['Building'])
+            ->get();
+        $building = $buildingQuery->getRowArray();
+        $invoice['Building_Name'] = $building['Building'] ?? 'Unknown';
+    }
+
+    // Pass the enhanced data to the view
+    $data['invoice_data'] = $invoiceData;
+
+    return view('Admin/invoice', $data);
+}
+
+public function invoicelist()
+{
+    $model = new Register_model();
+    $wherecond = array('invoice_status' => 'UnPaid');
+    $data['invoice'] = $model->getalldata('tbl_invoice', $wherecond);
+    // print_r($data['invoice']);die;
+    echo view('Admin/invoicelist',$data);
 }
 public function AdminDashboard()
 {

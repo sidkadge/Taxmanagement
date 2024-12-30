@@ -24,9 +24,14 @@ $routes->get('add_to_card/(:any)', 'Home::add_to_card/$1');
 $routes->get('add_to_cardfors/(:any)', 'Home::add_to_cardfors/$1');
 $routes->post('getSocietiesByZone','Home::getSocietiesByZone');
 $routes->post('getBuildingsBySociety','Home::getBuildingsBySociety');
+$routes->post('getBuildingChargesBySociety','Home::getBuildingChargesBySociety');
+$routes->post('getBuildingDetails','Home::getBuildingDetails');
+// $routes->get('invoiceprint', 'Home::invoiceprint');
+$routes->get('invoiceprint/(:any)', 'Home::invoice/$1');
 
 $routes->get('genrateinvoice', 'Home::genrateinvoice');
 $routes->get('invoice', 'Home::invoice');
+$routes->get('invoicelist', 'Home::invoicelist');
 
 $routes->get('AdminDashboard', 'Home::AdminDashboard');
 $routes->get('addproduct', 'Home::addproduct');
