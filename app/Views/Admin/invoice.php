@@ -210,33 +210,6 @@ p {
     </style>
 </head>
 <body>
-
-<?php 
-//  $adminModel = new \App\Models\AdminModel();
-//  $wherecond1 = [];
-
-//  if(!empty($invoice_data)){ 
-
-//  $wherecond1 = [
-//     'tbl_iteam.is_deleted' => 'N',
-//     'tbl_iteam.invoice_id' =>$invoice_data[0]->id
-// ];
-
-//  }
-
-
-
- 
-
-// $item_data = $adminModel->getalldata('tbl_iteam', $wherecond1);
-
-
-
-// echo'<pre>';print_r($item_data);die;
-
-
-
-// ?>
     <div class="invoice">
         <div class="header">
         <img src="<?=base_url();?>public/assets/images/logo.webp" alt="Logo" class="logo"> 
@@ -256,125 +229,63 @@ p {
         <hr class="dark-blue-line">
         <h2 class="bill_title">Invoice</h2>
         <div class="customer_details">
-           <p><span><b>Bill Number :</b> <?php if(!empty($invoice_data)){ echo $invoice_data[0]->invoiceNo; }?> </span> <span><b>Branch :</b> <?php if(!empty($invoice_data)){ echo $invoice_data[0]->branch_name; }?> </span>  <span><b>Date :</b> <?php if(!empty($invoice_data)){ $date = new DateTime($invoice_data[0]->invoice_date); echo $date->format('d/m/Y');  }?> </span></p> 
-           <p><span><b>Name :</b> <?php if(!empty($invoice_data)){ echo $invoice_data[0]->customer_name; }?> </span> <span style="margin-left: 34%; !important;     margin-right: 0px !important; "><b>Contact :</b> <?php if(!empty($invoice_data)){ echo $invoice_data[0]->contact_no; }?> </span></p> 
-           <p><span ><b>Delivery Address :</b> <?php if(!empty($invoice_data)){ echo $invoice_data[0]->delivery_address; }?> </span>  </p> 
-
-
+           <p><span><b>Bill Number :</b> <?php //if(!empty($invoice_data)){ echo $invoice_data[0]->Society; }?> </span> <span><b>Building :</b> <?php //if(!empty($invoice_data)){ echo $invoice_data[0]->Building_Name; }?> </span>  <span><b>Date :</b> <?php //if(!empty($invoice_data)){ $date = new DateTime($invoice_data[0]->Bill_Date); echo $date->format('d/m/Y');  }?> </span></p> 
+           <p><span><b>Flat :</b> <?php //if(!empty($invoice_data)){ echo $invoice_data[0]->Flats; }?> </span> <span style="margin-left: 34%; !important;     margin-right: 0px !important; "><b>Contact :</b> <?php //if(!empty($invoice_data)){ echo $invoice_data[0]->Mobile; }?> </span></p> 
         </div>
 
         <hr class="dark-blue-line">
 
-        <table  style="margin-bottom: 0px !important;">
-            <thead>
-                <tr>
-                    <th  class="text-center">Sr. No.</th>
-                    <th  class="text-center">Products</th>
-                    <th  class="text-center">Wt / Unit</th>
-                    <th  class="text-center">Rate / Unit (₹)</th>
-                    <th  class="text-center">Qty</th>
-                    <th  class="text-center">Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php 
-                if(!empty($item_data)){ $i=1;
-                    ?>
-                    <?php foreach($item_data as $data){
-
-                    $wherecond = array('is_deleted' => 'N', 'id' => $data->product_id);
-                    $product_data = $adminModel->getsingleuser('tbl_product', $wherecond);
-
-                    // echo "<pre>";print_r($product_data);exit();
-
-                     ?>
-                    <tr class="no-border">
-                        <td class="text-center"><?=$i;?></td>
-                        <td><b><?php if(!empty($product_data)){ echo $product_data->product_name;} ?></b></td>
-                        <td  class="text-center">  <?php if(!empty($product_data)){ echo $product_data->unit;} ?>
-                        <?php if(!empty($product_data)){ echo $product_data->unit_type;} ?>
-                        </td>
-                        <td style="text-align: right;"><?=$data->price; ?></td>
-                                                <td style="text-align: center;"><b><?=$data->quantity; ?></b></td>
-                        <td style="text-align: right;"><b><?=$data->total_amount; ?></b></td>               
-
-                    </tr>
-                 <?php $i++;} ?>
-                 <?php } ?>
-             
+        <table style="margin-bottom: 0px !important;">
+    <thead>
+        <tr>
+            <th class="text-center">Sr. No.</th>
+            <th class="text-center">Charges</th>
+            <th class="text-center">Rate / Unit (₹)</th>
+            <th class="text-center">Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if (!empty($invoice_data)) { ?>
+            <?php $i = 1; foreach ($invoice_data as $invoice) { ?>
                 <tr class="no-border" style="vertical-align: baseline; height: 140px;">
-                    <td></td>
-                    <td  class="text-right"><b></b></td>
-                   
-                    <td></td>
-                   
-                    <td></td>
-                    <td></td>
-                    <td><b></b></td>
+                    <td><?= $i++; ?></td>
+                    <td class="text-right"><b>Electricity Charges</b></td>
+                    <td class="text-center">-</td>
+                    <td class="text-right">₹ <?= number_format($invoice['Electricity_Charges'], 2); ?></td>
                 </tr>
                 <tr>
                     <td></td>
+                    <td class="text-right"><b>Municipal Tax</b></td>
+                    <td class="text-center">-</td>
+                    <td class="text-right">₹ <?= number_format($invoice['Municipal_Tax'], 2); ?></td>
+                </tr>
+                <tr>
                     <td></td>
+                    <td class="text-right"><b>General Maintenance</b></td>
+                    <td class="text-center">-</td>
+                    <td class="text-right">₹ <?= number_format($invoice['General_Maintenance'], 2); ?></td>
+                </tr>
+                <tr>
                     <td></td>
-                  
-                    <td colspan=2 class="text-right"><strong>Total</strong></td>
-
-                    <td class="text-right"> ₹ <?php if(!empty($invoice_data)){ echo  $invoice_data[0]->totalamounttotal; } ?></b></td>
+                    <td class="text-right"><b>Courier Charges</b></td>
+                    <td class="text-center">-</td>
+                    <td class="text-right">₹ <?= number_format($invoice['Misc_Charges'], 2); ?></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2" class="text-right"><strong>Grand Total</strong></td>
+                    <td class="text-right"><b>₹ <?= number_format($invoice['grand_total'], 2); ?></b></td>
                 </tr>
                
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  
-                    <td colspan=2 class="text-right"><strong>Discount</strong></td>
+            <?php } ?>
+        <?php } else { ?>
+            <tr>
+                <td colspan="4" class="text-center">No unpaid invoices found.</td>
+            </tr>
+        <?php } ?>
+    </tbody>
+</table>
 
-                    <td class="text-right"> ₹ <?php if(!empty($invoice_data)){ echo  $invoice_data[0]->discount; } ?></b></td>
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  
-                    <td colspan=2 class="text-right"><strong>Tax Amount </strong></td>
-
-                    <td class="text-right"> ₹ <?php if(!empty($invoice_data)){ echo  $invoice_data[0]->total_tax_amt; } ?></b></td>
-                </tr>
-
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  
-                    <td colspan=2 class="text-right"><strong>Courier Charges</strong></td>
-
-                    <td class="text-right"> ₹ <?php if(!empty($invoice_data)){ echo  $invoice_data[0]->courier_charges; } ?></b></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td colspan=2 class="text-right"><strong> Grand Total</strong></td>
-
-                  <td style="text-align: right;"><b>₹ <?php if(!empty($invoice_data)){echo $invoice_data[0]->final_total; } ?></b></td>
-                </tr>
-                <tr>
-                <td colspan=8>
-                    <p>Amount (in words): <span style="float: right;">E.& O.E</span> <br>
-                        <strong>
-                            <?php 
-                            if (!empty($invoice_data)) { 
-                                $amount_in_words = ucfirst($invoice_data[0]->totalamount_in_words);
-                                echo $amount_in_words . ' Only'; 
-                            } 
-                            ?>
-                        </strong>
-                    </p>
-                </td>
-                </tr>
-            </tbody>
-        </table>
 
         <table style="margin-bottom: 0px !important; border: none;">
 
@@ -394,7 +305,7 @@ p {
         <p class="bdetails"><b><u>Bank Details</u></b></p> 
         <p class="bdetails"><b>Acc. Name: Nakshtra Aesthetics Pune </b></p>
         <p class="bdetails"><b>Bank Name: Axis Bank Ltd </b></p> 
-        <p class="bdetails"><b>Branch Name: Moshi, Pune (MH)</b></p> 
+        <p class="bdetails"><b>Building Name: Moshi, Pune (MH)</b></p> 
         <p class="bdetails"><b>Account No.: 923020062971759 </b></p>
         <p class="bdetails"><b>IFSC Code: UTIB0004875 </b></p>
         <p class="bdetails"><b>MICR: </b></p> 

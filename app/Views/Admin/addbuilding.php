@@ -1,3 +1,4 @@
+
 <?php include __DIR__.'/../Admin/header.php'; ?>
 <div class="main-content">
     <section class="section">
@@ -35,6 +36,31 @@
                                     <input type="text" name="Building" class="form-control" id="Building"
                                         placeholder="Enter Building Name">
                                 </div>
+
+                                <div class="col-lg-3 col-md-6 col-12 form-group">
+                                    <label for="Municipal Tax">Municipal Tax </label>
+                                    <input type="text" name="Municipal_Tax" class="form-control" id="Municipal_Tax" placeholder="Enter Municipal Tax">
+                                </div>
+
+                                <div class="col-lg-3 col-md-6 col-12 form-group">
+                                    <label for="Electricity Charges">Electricity Charges</label>
+                                    <input type="text" name="Electricity_Charges" class="form-control" id="Electricity_Charges" placeholder="Enter Electricity Charges">
+                                </div>
+
+                                <div class="col-lg-3 col-md-6 col-12 form-group">
+                                    <label for="Water Charges">Water Charges</label>
+                                    <input type="text" name="Water_Charges" class="form-control" id="Water_Charges" placeholder="Enter Electricity Charges">
+                                </div>
+
+                                <div class="col-lg-3 col-md-6 col-12 form-group">
+                                    <label for="Lease Rent Charges">Lease Rent Charges</label>
+                                    <input type="text" name="Lease_Rent_Charges" class="form-control" id="Lease_Rent_Charges" placeholder="Enter Lease Rent Charges">
+                                </div>
+
+                                <div class="col-lg-3 col-md-6 col-12 form-group">
+                                    <label for="Education Fund">Education Fund</label>
+                                    <input type="text" name="Education_Fund" class="form-control" id="Education_Fund" placeholder="Education Fund">
+                                </div>
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer text-right">
@@ -60,7 +86,21 @@ $(document).ready(function() {
             Building: {
                 required: true,
             },
-
+            Municipal_Tax: { 
+                required: true, number: true 
+            },
+            Electricity_Charges: { 
+                required: true, number: true 
+            },
+            Water_Charges: { 
+                required: true, number: true 
+            },
+            Lease_Rent_Charges: { 
+                required: true, number: true 
+            },
+            Education_Fund: { 
+                required: true, number: true 
+            },
         },
         messages: {
             Society: {
@@ -68,6 +108,26 @@ $(document).ready(function() {
             },
             Building: {
                 required: 'Please Building name.',
+            },
+            Municipal_Tax: { 
+                required: 'Please enter Municipal Tax.', 
+                number: 'Please enter a valid number.' 
+            },
+            Electricity_Charges: { 
+                required: 'Please enter Electricity Charges.', 
+                number: 'Please enter a valid number.' 
+            },
+            Water_Charges: { 
+                required: 'Please enter Water Charges.', 
+                number: 'Please enter a valid number.' 
+            },
+            Lease_Rent_Charges: { 
+                required: 'Please enter Lease Rent Charges.', 
+                number: 'Please enter a valid number.' 
+            },
+            Education_Fund: { 
+                required: 'Please enter Education Fund.', 
+                number: 'Please enter a valid number.' 
             },
         },
 

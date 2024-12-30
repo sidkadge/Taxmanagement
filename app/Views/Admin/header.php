@@ -134,7 +134,7 @@ label.error {
                         <a href="#" class="menu-toggle nav-link has-dropdown" ><i data-feather="layout"></i><span>Invoice</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="<?= base_url() ?>genrateinvoice">Create Invoice</a></li>
-                                <li><a class="nav-link" href="<?= base_url() ?>productlist">Invoice List</a></li>
+                                <li><a class="nav-link" href="<?= base_url() ?>invoicelist">Invoice List</a></li>
                             </ul>
                         </li>
                       ]
